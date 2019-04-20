@@ -1,9 +1,19 @@
-const googleMapsClient = require('../services/google-maps.service');
-const asyncHandler = require('express-async-handler');
+const {pipe, then, path, otherwise, when, isNil, bind} = require("ramda");
 
-exports.getLatLngFromAddress = asyncHandler(async (req, res) => {
-  const response = await googleMapsClient
-    .geocode({address: '1600 Amphitheatre Parkway, Mountain View, CA'})
-    .asPromise();
-  res.send(response.json.results);
-});
+const {findGeoWithAddress} = require('../services/google-maps.service');
+
+exports.getLatLngFromAddress = (req, res, next) => {
+  const handleEmptyAddress = () => {
+    res.status(400);
+    res.send('Missing address in query param');
+  };
+  pipe(
+    path(['query', 'address']),
+    when(isNil, handleEmptyAddress),
+    findGeoWithAddress,
+    otherwise(next),
+    then(
+      bind(res.json, res),
+    ),
+  )(req);
+};
