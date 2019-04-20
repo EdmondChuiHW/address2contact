@@ -12,6 +12,7 @@
   "dependencies": {
     "@google/maps": "^0.5.5",
     "@turf/turf": "^5.1.6",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "ramda": "^0.26.1",
     "request": "^2.88.0",
