@@ -1,4 +1,4 @@
-const {pick, head, ifElse, pipe, isNil, always, then} = require('ramda');
+const {pick, head, ifElse, pipe, either, isEmpty, isNil, always, then} = require('ramda');
 const requests = require('request-promise-native');
 
 exports.mapCouncillor = c => ({
@@ -8,7 +8,7 @@ exports.mapCouncillor = c => ({
 });
 
 const wardNumberToElectoralArea = ifElse(
-  isNil,
+  either(isNil, isEmpty),
   always('City-Wide'),
   w => `Ward ${w}`,
 );
