@@ -18,8 +18,7 @@ const parseGoogleBounds = pipe(
     pipe(prop('southwest'), parseGooglePoint),
   ]),
   turf.featureCollection,
-  turf.bbox,
-  turf.bboxPolygon,
+  turf.envelope,
 );
 
 const isBounds = propSatisfies(complement(isNil), 'northeast');
