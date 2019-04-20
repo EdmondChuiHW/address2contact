@@ -1,4 +1,4 @@
-const {ifElse, apply, pipe, prop, complement, then, curry, find, when, isNil, always} = require('ramda');
+const {ifElse, apply, pipe, prop, complement, then, curry, find, unless, isNil, always} = require('ramda');
 const turf = require('@turf/turf');
 const {getWards} = require("./wards.service");
 const {findGeoWithAddress} = require("./google-maps.service");
@@ -23,8 +23,7 @@ exports.makeFinderWithGeo = ifElse(
 
 exports.findWardNumberByGeo = (wards, geo) => pipe(
   exports.makeFinderWithGeo(geo),
-  when(isNil, always({name: undefined})),
-  prop('name'),
+  unless(isNil, prop('name')),
 )(wards);
 
 exports.getCouncillorByAddress = pipe(
