@@ -1,7 +1,7 @@
-const {findWardByGeo} = require("./address2councillor.service");
+const {findWardNumberByGeo, makeFinderWithGeo} = require("./address2councillor.service");
 
 describe('address2councillor service', () => {
-  describe('findWardByGeo', () => {
+  describe('findWardNumberByGeo', () => {
     it('should find ward given a point', () => {
       const wards = [{
         name: "1",
@@ -29,7 +29,7 @@ describe('address2councillor service', () => {
         type: "Point",
         coordinates: [-123, 36],
       };
-      expect(findWardByGeo(wards, point)).toEqual(wards[0]);
+      expect(findWardNumberByGeo(wards, point)).toEqual("1");
     });
 
     it('should find ward given a polygon', () => {
@@ -78,7 +78,47 @@ describe('address2councillor service', () => {
         },
         "properties": {},
       };
-      expect(findWardByGeo(wards, box)).toEqual(wards[0]);
+      expect(findWardNumberByGeo(wards, box)).toEqual("1");
+    });
+
+    it('should find undefined ward given a polygon', () => {
+      const wards = [{
+        name: "1",
+        geometry: {
+          type: "MultiPolygon",
+          coordinates: [[[[
+            -125.0844873,
+            35.4253904,
+          ], [
+            -122.0844873,
+            35.4253904,
+          ], [
+            -122.0844873,
+            37.4253904,
+          ], [
+            -125.0844873,
+            37.4253904,
+          ], [
+            -125.0844873,
+            35.4253904,
+          ]]]],
+        },
+      }];
+      const point = {
+        type: "Point",
+        coordinates: [-1, 50],
+      };
+      expect(findWardNumberByGeo(wards, point)).toEqual(undefined);
+    });
+  });
+
+  describe('makeFinderWithGeo', () => {
+    it('should makeFinderWithGeo when geo is nil', () => {
+      expect(!!makeFinderWithGeo(undefined)).toEqual(true);
+    });
+
+    it('should makeFinderWithGeo when geo is not nil', () => {
+      expect(!!makeFinderWithGeo({type: "Point", coordinates: [0, 0]})).toEqual(true);
     });
   });
 });

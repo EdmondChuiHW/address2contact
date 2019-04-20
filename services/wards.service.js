@@ -1,5 +1,5 @@
 const requests = require('request-promise-native');
-const {pipe} = require('ramda');
+const {pipe, then, map} = require('ramda');
 
 exports.mapWard = w => ({
   name: w.name,
@@ -16,5 +16,5 @@ const getServerWards = () => requests({
 
 exports.getWards = pipe(
   getServerWards,
-  exports.mapWard,
+  then(map(exports.mapWard)),
 );

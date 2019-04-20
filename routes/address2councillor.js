@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const {getCouncillorByWardNumber} = require("../controllers/address2councillor.controller");
+const {getCouncillorByAddress} = require("../controllers/address2councillor.controller");
 
-router.get('/', getCouncillorByWardNumber);
+router.get('/', getCouncillorByAddress);
 
 module.exports = router;

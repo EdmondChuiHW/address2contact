@@ -1,11 +1,11 @@
 const {pipe, then, otherwise, bind, path} = require("ramda");
 
-const {getCouncillorByWardNumber} = require('../services/address2councillor.service');
+const {getCouncillorByAddress} = require('../services/address2councillor.service');
 
-exports.getCouncillorByWardNumber = (req, res, next) => {
+exports.getCouncillorByAddress = (req, res, next) => {
   pipe(
-    path(['query', 'ward']),
-    getCouncillorByWardNumber,
+    path(['query', 'address']),
+    getCouncillorByAddress,
     otherwise(next),
     then(
       bind(res.json, res),
