@@ -18,6 +18,7 @@ const getInfoByElectoralArea = eA => requests({
   json: true,
   qs: {
     electoral_area: eA,
+    $select: ['first_name', 'last_name', 'photo_url', 'email', 'phone', 'url'].join(','),
     $$app_token: process.env.OPEN_DATA_TOKEN,
   },
 });

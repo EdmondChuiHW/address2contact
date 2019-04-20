@@ -10,6 +10,7 @@ const getServerWards = () => requests({
   url: 'https://data.edmonton.ca/resource/aket-j2ar.json',
   json: true,
   qs: {
+    $select: ['name', 'the_geom'].join(','),
     $$app_token: process.env.OPEN_DATA_TOKEN,
   },
 });
