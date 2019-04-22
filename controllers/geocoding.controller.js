@@ -1,6 +1,6 @@
 const {pipe, then, path, otherwise, when, isNil, bind} = require("ramda");
 
-const {findGeoWithAddress} = require('../services/google-maps.service');
+const {findGeoWithAddress} = require('../services/geo.service');
 
 exports.getLatLngFromAddress = (req, res, next) => {
   const handleEmptyAddress = () => {

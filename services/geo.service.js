@@ -1,4 +1,4 @@
-const {pipe, ifElse, isEmpty, always, juxt, either, complement, isNil, prop, head, then, path, propSatisfies} = require("ramda");
+const {pipe, bind, map, drop, ifElse, isEmpty, match, test, always, juxt, either, complement, isNil, prop, head, then, path, propSatisfies} = require("ramda");
 const turf = require('@turf/turf');
 
 // Apr 21 2019 https://googlemaps.github.io/google-maps-services-js/docs/GoogleMapsClient.html#.geocode
@@ -43,7 +43,7 @@ const mapGoogleGeoToGeoJson = ifElse(
 
 exports.mapResultsToGeo = ifElse(
   isEmpty,
-  always(undefined),
+  always({}),
   pipe(
     head,
     prop('geometry'),
@@ -52,10 +52,28 @@ exports.mapResultsToGeo = ifElse(
   ),
 );
 
-exports.findGeoWithAddress = pipe(
-  googleGeoWithAddress,
-  then(pipe(
-    path(['json', 'results']),
-    exports.mapResultsToGeo,
-  )),
+// Apr 21 2019 https://stackoverflow.com/a/3518546
+// geo: lat: 53.552495, lng: -113.500199
+const geoMatcher = /^geo:\s*lng:\s*(-?\d+(?:\.\d+)?),\s*lat:\s*(-?\d+(?:\.\d+)?)$/i;
+
+const parseLatLng = pipe(
+  match(geoMatcher),
+  drop(1),
+  map(Number.parseFloat),
+  turf.point,  // takes long lat
+);
+
+exports.findGeoWithAddress = ifElse(
+  test(geoMatcher),
+  pipe(
+    parseLatLng,
+    bind(Promise.resolve, Promise),
+  ),
+  pipe(
+    googleGeoWithAddress,
+    then(pipe(
+      path(['json', 'results']),
+      exports.mapResultsToGeo,
+    )),
+  ),
 );

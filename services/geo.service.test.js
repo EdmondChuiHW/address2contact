@@ -1,4 +1,4 @@
-const {mapResultsToGeo} = require("./google-maps.service");
+const {mapResultsToGeo} = require("./geo.service");
 
 describe('mapResultsToGeo', () => {
   it('returns bounds if present', () => {
@@ -53,7 +53,7 @@ describe('mapResultsToGeo', () => {
     expect(mapResultsToGeo(sample)).toEqual(expected);
   });
 
-  it('returns undefined if result is empty', () => {
-    expect(mapResultsToGeo([])).toEqual(undefined);
+  it('returns {} if result is empty', () => {
+    expect(mapResultsToGeo([])).toEqual({});
   });
 });
