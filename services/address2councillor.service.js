@@ -13,7 +13,7 @@ const pred = geo => pipe(
 );
 
 exports.makeFinderWithGeo = ifElse(
-  isNil,
+  either(isNil, isEmpty),
   always(always(undefined)),  // return type is (ward[]) => ward
   pipe(
     pred,
@@ -23,7 +23,7 @@ exports.makeFinderWithGeo = ifElse(
 
 exports.findWardNumberByGeo = (wards, geo) => pipe(
   exports.makeFinderWithGeo(geo),
-  unless(isNil, prop('name')),
+  unless(either(isNil, isEmpty), prop('name')),
 )(wards);
 
 exports.getCouncillorByAddress = ifElse(
