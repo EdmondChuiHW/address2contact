@@ -53,7 +53,7 @@ exports.mapResultsToGeo = ifElse(
 );
 
 // Apr 21 2019 https://stackoverflow.com/a/3518546
-// geo: lat: 53.552495, lng: -113.500199
+// geo: lng: -113.500199, lat: 53.552495
 const geoMatcher = /^geo:\s*lng:\s*(-?\d+(?:\.\d+)?),\s*lat:\s*(-?\d+(?:\.\d+)?)$/i;
 
 const parseLatLng = pipe(
