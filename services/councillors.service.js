@@ -4,6 +4,7 @@ const requests = require('request-promise-native');
 exports.mapCouncillor = c => ({
   name: `${c.first_name} ${c.last_name}`,
   photoUrl: c.photo_url,
+  electoralArea: c.electoral_area,
   ...pick(['email', 'phone', 'url'], c),
 });
 
@@ -18,7 +19,7 @@ const getInfoByElectoralArea = eA => requests({
   json: true,
   qs: {
     electoral_area: eA,
-    $select: ['first_name', 'last_name', 'photo_url', 'email', 'phone', 'url'].join(','),
+    $select: ['first_name', 'last_name', 'photo_url', 'email', 'phone', 'url', 'electoral_area'].join(','),
     $$app_token: process.env.OPEN_DATA_TOKEN,
   },
 });

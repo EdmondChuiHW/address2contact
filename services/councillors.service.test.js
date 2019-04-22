@@ -20,6 +20,7 @@ describe('councillors service', () => {
         "url": "http://www.edmonton.ca/city_government/city_organization/mayor/more-about-the-mayor.aspx",
       };
       const expected = {
+        electoralArea: "City-Wide",
         email: "mayorsoffice@edmonton.ca",
         name: "Don Iveson",
         phone: "7804968100",
@@ -47,6 +48,7 @@ describe('councillors service', () => {
         "url": "http://www.edmonton.ca/city_government/city_organization/ward-1-councillor.aspx",
       };
       const expected = {
+        electoralArea: "Ward 1",
         email: "andrew.knack@edmonton.ca",
         name: "Andrew Knack",
         phone: "7804968122",
