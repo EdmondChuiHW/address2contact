@@ -2,9 +2,11 @@ const {pick, head, ifElse, pipe, either, isEmpty, isNil, always, then} = require
 const requests = require('request-promise-native');
 
 exports.mapCouncillor = c => ({
-  name: `${c.first_name} ${c.last_name}`,
+  firstName: c.first_name,
+  lastName: c.last_name,
   photoUrl: c.photo_url,
-  electoralArea: c.electoral_area,
+  role: c.primary_role,
+  ward: c.electoral_area,
   ...pick(['email', 'phone', 'url'], c),
 });
 

@@ -20,9 +20,11 @@ describe('councillors service', () => {
         "url": "http://www.edmonton.ca/city_government/city_organization/mayor/more-about-the-mayor.aspx",
       };
       const expected = {
-        electoralArea: "City-Wide",
+        ward: "City-Wide",
+        role: "Mayor",
         email: "mayorsoffice@edmonton.ca",
-        name: "Don Iveson",
+        firstName: "Don",
+        lastName: "Iveson",
         phone: "7804968100",
         photoUrl: "http://www.edmonton.ca/city_government/documents/Images/Mayor_Don_Iveson200X250.jpg",
         url: "http://www.edmonton.ca/city_government/city_organization/mayor/more-about-the-mayor.aspx",
@@ -48,9 +50,11 @@ describe('councillors service', () => {
         "url": "http://www.edmonton.ca/city_government/city_organization/ward-1-councillor.aspx",
       };
       const expected = {
-        electoralArea: "Ward 1",
+        ward: "Ward 1",
+        role: "Councillor",
         email: "andrew.knack@edmonton.ca",
-        name: "Andrew Knack",
+        firstName: "Andrew",
+        lastName: "Knack",
         phone: "7804968122",
         photoUrl: "http://www.edmonton.ca/city_government/documents/Images/Councillor_Andrew_Knack200X250.jpg",
         url: "http://www.edmonton.ca/city_government/city_organization/ward-1-councillor.aspx",
