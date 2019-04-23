@@ -1,4 +1,8 @@
-const {findWardNumberByGeo, makeFinderWithGeo} = require("./address2councillor.service");
+const {
+  findWardNumberByGeo,
+  makeFinderWithGeo,
+  mapGeoToMultiPolygon,
+} = require("./address2councillor.service");
 
 describe('address2councillor service', () => {
   describe('findWardNumberByGeo', () => {
@@ -119,6 +123,56 @@ describe('address2councillor service', () => {
 
     it('should makeFinderWithGeo when geo is not nil', () => {
       expect(!!makeFinderWithGeo({type: "Point", coordinates: [0, 0]})).toEqual(true);
+    });
+  });
+
+  describe('mapGeoToMultiPolygon', () => {
+    it('should map a point to multi polygon', () => {
+      const point = {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [0, 1],
+        },
+        properties: {},
+      };
+      const expected = {
+        type: "Feature",
+        geometry: {
+          type: "MultiPolygon",
+          coordinates: [[[
+            [0, 1], [0, 1], [0, 1], [0, 1], [0, 1],
+          ]]],
+        },
+        properties: {},
+      };
+      const actual = mapGeoToMultiPolygon(point);
+      expect(actual).toEqual(expected);
+    });
+
+    it('should map a polygon to multi polygon', () => {
+      const point = {
+        type: "Feature",
+        geometry: {
+          type: "Polygon",
+          coordinates: [[
+            [0, 1], [0, 1], [0, 1], [0, 1], [0, 1],
+          ]],
+        },
+        properties: {},
+      };
+      const expected = {
+        type: "Feature",
+        geometry: {
+          type: "MultiPolygon",
+          coordinates: [[[
+            [0, 1], [0, 1], [0, 1], [0, 1], [0, 1],
+          ]]],
+        },
+        properties: {},
+      };
+      const actual = mapGeoToMultiPolygon(point);
+      expect(actual).toEqual(expected);
     });
   });
 });

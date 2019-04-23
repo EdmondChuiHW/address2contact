@@ -6,11 +6,16 @@ const {getCouncillorByWardNumber} = require("./councillors.service");
 
 const isIntersecting = complement(curry(turf.booleanDisjoint));
 
-const mapGeoToMultiPolygon = pipe(turf.envelope, path(['geometry', 'coordinates']), of, turf.multiPolygon);
+exports.mapGeoToMultiPolygon = pipe(
+  turf.envelope,
+  path(['geometry', 'coordinates']),  // Polygon[]
+  of,                                 // Polygon[][]/MultiPolygon[]
+  turf.multiPolygon,
+);
 
 const pred = geo => pipe(
   prop('geometry'),
-  isIntersecting(mapGeoToMultiPolygon(geo)),
+  isIntersecting(exports.mapGeoToMultiPolygon(geo)),
 );
 
 exports.makeFinderWithGeo = ifElse(
