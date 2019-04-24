@@ -160,7 +160,7 @@ const findByElectoralArea = eA => find(propEq('electoral_area', eA));
 
 exports.getCouncillorByWardNumber = pipe(
   wardNumberToElectoralArea,
-  () => Promise.resolve(findByElectoralArea(hardCoded2019Councillors)),
+  eA => Promise.resolve(findByElectoralArea(eA)(hardCoded2019Councillors)),
   then(pipe(
     head,
     exports.mapCouncillor,
