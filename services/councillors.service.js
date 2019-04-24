@@ -1,4 +1,4 @@
-const {pick, head, ifElse, prop, when, flip, has, pipe, either, isEmpty, isNil, always, then} = require('ramda');
+const {pick, head, ifElse, find, propEq, prop, when, flip, has, pipe, either, isEmpty, isNil, always, then} = require('ramda');
 const requests = require('request-promise-native');
 
 const hardCoded2019Councillors = [{
@@ -156,9 +156,11 @@ const getInfoByElectoralArea = eA => requests({
   },
 });
 
+const findByElectoralArea = eA => find(propEq('electoral_area', eA));
+
 exports.getCouncillorByWardNumber = pipe(
   wardNumberToElectoralArea,
-  () => Promise.resolve(hardCoded2019Councillors),
+  () => Promise.resolve(findByElectoralArea(hardCoded2019Councillors)),
   then(pipe(
     head,
     exports.mapCouncillor,
