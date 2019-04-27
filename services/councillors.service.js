@@ -1,5 +1,4 @@
-const {pick, head, ifElse, find, propEq, prop, when, flip, has, pipe, either, isEmpty, isNil, always, then} = require('ramda');
-const requests = require('request-promise-native');
+const {pick, bind, ifElse, find, propEq, prop, when, flip, has, pipe, either, isEmpty, isNil, always} = require('ramda');
 
 const hardCoded2019Councillors = [{
   'first_name': 'Don',
@@ -146,16 +145,6 @@ const wardNumberToElectoralArea = ifElse(
   w => `Ward ${w}`,
 );
 
-const getInfoByElectoralArea = eA => requests({
-  url: 'https://data.edmonton.ca/resource/4jei-zkvn.json',
-  json: true,
-  qs: {
-    electoral_area: eA,
-    $select: ['first_name', 'last_name', 'photo_url', 'email', 'phone', 'primary_role', 'electoral_area'].join(','),
-    $$app_token: process.env.OPEN_DATA_TOKEN,
-  },
-});
-
 const findByElectoralArea = eA => find(propEq('electoral_area', eA));
 
 exports.getCouncillorByWardNumber = pipe(
@@ -163,4 +152,5 @@ exports.getCouncillorByWardNumber = pipe(
   findByElectoralArea,
   finder => finder(hardCoded2019Councillors),
   exports.mapCouncillor,
+  bind(Promise.resolve, Promise),
 );
