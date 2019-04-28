@@ -2,6 +2,8 @@
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+variables:
+- group: env
 
 trigger:
 - master
@@ -19,6 +21,9 @@ steps:
     npm ci
     npm run test:ci
   displayName: 'npm ci and test'
+  env:
+    GOOGLE_MAPS_API_KEY: $(GOOGLE_MAPS_API_KEY)
+    OPEN_DATA_TOKEN: $(OPEN_DATA_TOKEN)
 
 - task: PublishTestResults@2
   condition: succeededOrFailed()
