@@ -7,7 +7,8 @@
     "start": "node index.js",
     "start:ssl": "npm run start -- --https",
     "test": "jest",
-    "test:units": "jest \"^((?!\\.e2e\\.).)*$\""
+    "test:units": "jest \"^((?!\\.e2e\\.).)*$\"",
+    "test:ci": "jest --ci --reporters=default --reporters=jest-junit"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,13 @@
     "@types/request-promise-native": "^1.0.15",
     "@types/supertest": "^2.0.7",
     "jest": "^24.7.1",
+    "jest-junit": "^6.3.0",
     "supertest": "^4.0.2"
+  },
+  "jest": {
+    "reporters": [
+      "default",
+      "jest-junit"
+    ]
   }
 }
