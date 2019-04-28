@@ -4,8 +4,14 @@ const app = require('../app');
 const requestWithAddress = address => request(app)
   .get('/address2councillor')
   .query({address})
-  .expect('Content-Type', /json/)
-  .expect(200);
+  .expect(res => {
+    try {
+      expect(res.type).toMatch(/json/);
+      expect(res.status).toEqual(200);
+    } catch (error) {
+      fail(`${error.message} ${res.text}`);
+    }
+  });
 
 const extendedTimeout = 20 * 1000;
 
