@@ -7,7 +7,7 @@ const requestWithAddress = address => request(app)
   .expect('Content-Type', /json/)
   .expect(200);
 
-const extendedTimeout = 10 * 1000;
+const extendedTimeout = 20 * 1000;
 
 describe('End to end', () => {
   it('returns mayor given no query params', () => {
