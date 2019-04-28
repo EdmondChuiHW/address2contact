@@ -17,7 +17,7 @@ steps:
 
 - script: |
     npm ci
-    npm test:ci
+    npm run test:ci
   displayName: 'npm ci and test'
 
 - task: PublishTestResults@2
