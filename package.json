@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "start:ssl": "npm run start -- --https",
+    "test": "jest",
+    "test:units": "jest \"^((?!\\.e2e\\.).)*$\""
   },
   "keywords": [],
   "author": "",
@@ -12,7 +15,9 @@
   "dependencies": {
     "@google/maps": "^0.5.5",
     "@turf/turf": "^5.1.6",
+    "commander": "^2.20.0",
     "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "ramda": "^0.26.1",
     "request": "^2.88.0",
@@ -22,6 +27,8 @@
     "@types/express": "^4.16.1",
     "@types/google__maps": "^0.5.5",
     "@types/request-promise-native": "^1.0.15",
-    "jest": "^24.7.1"
+    "@types/supertest": "^2.0.7",
+    "jest": "^24.7.1",
+    "supertest": "^4.0.2"
   }
 }
