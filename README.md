@@ -6,7 +6,7 @@
 Express App that resolves councillor info from an address or lat/long. Backend for [email-contact](https://github.com/chuihinwai/email-contact)
 
 ## λ
-Uses [Ramda](https://ramdajs.com/) heavily for functional programming when applicable.
+Uses [Ramda](https://ramdajs.com/) heavily for functional programming where applicable.
 
 ## Scripts
 ### `start`
