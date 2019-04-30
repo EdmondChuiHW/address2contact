@@ -33,4 +33,5 @@ View the Azure Pipeline project: https://dev.azure.com/chuihinwai/address2counci
 - [ ] Add API token mechanism
 - [ ] Revert to Open Data councillors table from hard coded hot fix
 - [ ] Add caching of ward boundaries and councillor info
+- [ ] Favour `import` instead of `require` (Add Babel)
 
