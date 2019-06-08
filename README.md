@@ -1,7 +1,7 @@
 # address2contact
-[![Build Status](https://dev.azure.com/chuihinwai/address2councillor/_apis/build/status/chuihinwai.address2contact?branchName=master)](https://dev.azure.com/chuihinwai/address2councillor/_build/latest?definitionId=1&branchName=master)
-![David](https://img.shields.io/david/chuihinwai/address2contact.svg)
-![David](https://img.shields.io/david/dev/chuihinwai/address2contact.svg)
+[![Build Status](https://dev.azure.com/EdmondChuiHW/address2councillor/_apis/build/status/EdmondChuiHW.address2contact?branchName=master)](https://dev.azure.com/EdmondChuiHW/address2councillor/_build/latest?definitionId=1&branchName=master)
+![David](https://img.shields.io/david/EdmondChuiHW/address2contact.svg)
+![David](https://img.shields.io/david/dev/EdmondChuiHW/address2contact.svg)
 
 Express App that resolves councillor info from an address or lat/long. Backend for [email-contact](https://github.com/EdmondChuiHW/email-contact)
 
