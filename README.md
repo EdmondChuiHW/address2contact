@@ -3,7 +3,7 @@
 ![David](https://img.shields.io/david/chuihinwai/address2contact.svg)
 ![David](https://img.shields.io/david/dev/chuihinwai/address2contact.svg)
 
-Express App that resolves councillor info from an address or lat/long. Backend for [email-contact](https://github.com/chuihinwai/email-contact)
+Express App that resolves councillor info from an address or lat/long. Backend for [email-contact](https://github.com/EdmondChuiHW/email-contact)
 
 ## λ
 Uses [Ramda](https://ramdajs.com/) heavily for functional programming where applicable.
