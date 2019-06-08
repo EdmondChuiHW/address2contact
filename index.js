@@ -5,7 +5,7 @@ const program = require('commander');
 const fs = require('fs');
 const https = require('https');
 
-const {when, always, curry} = require('ramda');
+const { when, always } = require('ramda');
 
 program
   .version('1.0.0')
@@ -13,10 +13,10 @@ program
   .parse(process.argv);
 exports.isUsingSsl = program.https;
 
-const wrapAppWithSsl = curry(https.createServer)({
+const wrapAppWithSsl = app => https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert'),
-});
+}, app);
 
 const wrapIfEnabled = when(always(exports.isUsingSsl), wrapAppWithSsl);
 
