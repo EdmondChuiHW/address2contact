@@ -4,7 +4,7 @@ const hardCoded2019Councillors = [{
   'first_name': 'Don',
   'last_name': 'Iveson',
   'photo_url': 'https://www.edmonton.ca/city_government/documents/Mayor-Headshot_800x494_rdax_500x309.jpg',
-  'email': 'mayorsoffice@edmonton.ca',
+  'email': 'don.iveson@edmonton.ca',
   'phone': '7804968100',
   'primary_role': 'Mayor',
   'electoral_area': 'City-Wide',
